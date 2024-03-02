@@ -2,10 +2,15 @@ package campolina.hrgroup.hrapp.service.serviceImplementation;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import campolina.hrgroup.hrapp.model.Address;
 import campolina.hrgroup.hrapp.repository.AddressRepository;
 import campolina.hrgroup.hrapp.service.AddressService;
 
+@Service
+@Transactional
 public class AddressServiceImplementation implements AddressService{
     @Autowired
     private AddressRepository addressRepository;

@@ -2,7 +2,8 @@ package campolina.hrgroup.hrapp.model;
 
 import java.time.LocalTime;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,9 +41,8 @@ public class Interview {
     @JoinColumn(name = "applicant_id")
     private Applicant applicant;
 
-    @ManyToMany
-    @JoinColumn(name = "interview_id", referencedColumnName = "interview_id")
-    private List<Employee> employees;
+    @ManyToMany(mappedBy = "assignInterview")
+    private Set<Employee> assignEmployees = new HashSet<>();
 
     public Applicant getApplicant() {
         return applicant;
@@ -84,11 +84,11 @@ public class Interview {
         this.platform = platform;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public Set<Employee> getAssignEmployees() {
+        return assignEmployees;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setAssignEmployees(Set<Employee> assignEmployees) {
+        this.assignEmployees = assignEmployees;
     }
 }

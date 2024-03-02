@@ -41,8 +41,7 @@ public class JobPosition {
     @JoinColumn(name = "position_id", referencedColumnName = "position_id")
     private JobPosting jobPosting;
 
-    @OneToMany
-    @JoinColumn(name = "position_id", referencedColumnName = "position_id")
+    @OneToMany(mappedBy = "jobPosition")
     private List<Employee> employees;
 
     public Department getDepartment() {

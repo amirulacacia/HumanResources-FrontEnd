@@ -3,11 +3,14 @@ package campolina.hrgroup.hrapp.service.serviceImplementation;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import campolina.hrgroup.hrapp.model.JobPosting;
 import campolina.hrgroup.hrapp.repository.JobPostingRepository;
 import campolina.hrgroup.hrapp.service.JobPostingService;
 
 @Service
+@Transactional
 public class JobPostingServiceImplementation implements JobPostingService {
 
     @Autowired

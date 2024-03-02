@@ -2,10 +2,15 @@ package campolina.hrgroup.hrapp.service.serviceImplementation;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import campolina.hrgroup.hrapp.model.AdditionalInfo;
 import campolina.hrgroup.hrapp.repository.AdditionalInfoRepository;
 import campolina.hrgroup.hrapp.service.AdditionalInfoService;
 
+@Service
+@Transactional
 public class AdditionalInfoServiceImplementation implements AdditionalInfoService {
     @Autowired
     private AdditionalInfoRepository additionalInfoRepository;

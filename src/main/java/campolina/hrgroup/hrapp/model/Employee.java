@@ -1,6 +1,8 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -21,7 +24,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
-    private long employeeId;
+    private Long employeeId;
 
     @NotBlank
     private String password;
@@ -63,18 +66,26 @@ public class Employee {
     private List<Experience> experiences;
 
     @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @JoinTable(
+        name = "employee_position",
+        joinColumns = @JoinColumn(name = "employee_id"),
+        inverseJoinColumns = @JoinColumn(name = "position_id")
+    )
     private JobPosition jobPosition;
 
     @ManyToMany
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
-    private List<Interview> interviews;
+    @JoinTable(
+        name = "employee_interview",
+        joinColumns = @JoinColumn(name = "employee_id"),
+        inverseJoinColumns = @JoinColumn(name = "interview_id")
+    )
+    private Set<Interview> assignInterview = new HashSet<>();
 
-    public long getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
