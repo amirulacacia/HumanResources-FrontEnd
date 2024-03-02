@@ -22,6 +22,7 @@ public class Reference {
     private String position;
 
     @Email
+    @NotBlank
     private String email;
 
     @Column(name = "contact_number")

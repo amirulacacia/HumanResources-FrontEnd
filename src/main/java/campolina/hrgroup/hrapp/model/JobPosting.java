@@ -40,7 +40,7 @@ public class JobPosting {
     @NotNull
     private Integer vacancy;
 
-    @Column(nullable = false, name = "closed_date")
+    @Column(name = "closed_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date closedDate;
 
