@@ -1,11 +1,14 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -34,6 +37,10 @@ public class AdditionalInfo {
     @OneToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+    @OneToMany
+    @JoinColumn(name = "additionalInfo_id", referencedColumnName = "additionalInfo_id")
+    private List<Reference> references;
 
     public Long getAdditionInfoId() {
         return additionInfoId;
