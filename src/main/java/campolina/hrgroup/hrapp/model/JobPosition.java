@@ -1,6 +1,5 @@
 package campolina.hrgroup.hrapp.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -67,4 +66,3 @@ public class JobPosition {
         this.departmentId = departmentId;
     }
 }
-
