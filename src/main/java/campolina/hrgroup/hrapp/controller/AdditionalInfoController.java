@@ -7,7 +7,7 @@ import campolina.hrgroup.hrapp.service.AdditionalInfoService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/additionalinfo")
+@RequestMapping("/additionalInfo")
 public class AdditionalInfoController {
 
     @Autowired

@@ -7,7 +7,7 @@ import campolina.hrgroup.hrapp.model.Applicant;
 import campolina.hrgroup.hrapp.service.ApplicantService;
 
 @RestController
-@RequestMapping("/applicants") 
+@RequestMapping("/applicant") 
 public class ApplicantController {
 
     @Autowired

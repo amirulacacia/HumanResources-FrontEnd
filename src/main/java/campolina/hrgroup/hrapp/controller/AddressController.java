@@ -7,7 +7,7 @@ import campolina.hrgroup.hrapp.model.Address;
 import campolina.hrgroup.hrapp.service.AddressService;
 
 @RestController
-@RequestMapping("/addresses") 
+@RequestMapping("/address") 
 public class AddressController {
 
     @Autowired
