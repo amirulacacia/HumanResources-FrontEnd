@@ -25,6 +25,7 @@ public class UserDocuments {
     @Column(name = "cover_letter_location")
     private String coverLetterLocation;
 
+    @Column(name = "link")
     private String link;
 
     @OneToOne

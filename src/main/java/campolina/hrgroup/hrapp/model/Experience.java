@@ -41,6 +41,7 @@ public class Experience {
     @Column(name = "employer_address")
     private String employerAddress;
 
+    @Column(name = "salary")
     private String salary;
 
     @Column(name = "job_description")

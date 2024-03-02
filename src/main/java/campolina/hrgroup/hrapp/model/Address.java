@@ -19,12 +19,15 @@ public class Address {
     private Long addressId;
 
     @NotBlank
+    @Column(name = "country")
     private String country;
 
     @NotBlank
+    @Column(name = "state")
     private String state;
 
     @NotBlank
+    @Column(name = "postcode")
     private String postcode;
 
     @NotBlank
@@ -38,6 +41,7 @@ public class Address {
     private String addressLine3;
 
     @NotBlank
+    @Column(name = "city")
     private String city;
 
     @OneToOne

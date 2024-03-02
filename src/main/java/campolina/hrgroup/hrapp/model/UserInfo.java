@@ -22,17 +22,23 @@ public class UserInfo {
     @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "middle_name")
+    private String middleName;
+
     @NotBlank
     @Column(name = "last_name")
     private String lastName;
 
     @NotBlank
+    @Column(name = "email")
     private String email;
 
     @NotBlank
+    @Column(name = "title")
     private String title;
 
     @NotBlank
+    @Column(name = "contact_number")
     private String contactNum;
 
     @OneToOne
