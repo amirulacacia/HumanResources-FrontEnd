@@ -2,6 +2,7 @@ package campolina.hrgroup.hrapp.model;
 
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -37,6 +39,10 @@ public class Interview {
     @OneToOne
     @JoinColumn(name = "applicant_id")
     private Applicant applicant;
+
+    @ManyToMany
+    @JoinColumn(name = "interview_id", referencedColumnName = "interview_id")
+    private List<Employee> employees;
 
     public Applicant getApplicant() {
         return applicant;
@@ -76,5 +82,13 @@ public class Interview {
 
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

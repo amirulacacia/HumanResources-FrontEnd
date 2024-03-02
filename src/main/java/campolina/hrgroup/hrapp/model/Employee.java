@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -60,6 +61,14 @@ public class Employee {
     @OneToMany
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
     private List<Experience> experiences;
+
+    @OneToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    private JobPosition jobPosition;
+
+    @ManyToMany
+    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    private List<Interview> interviews;
 
     public long getEmployeeId() {
         return employeeId;
