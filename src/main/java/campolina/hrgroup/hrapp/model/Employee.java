@@ -13,12 +13,12 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employeeId;
+    private long employeeId;
 
     @NotBlank
     private String password;
 
-    public int getEmployeeId() {
+    public long getEmployeeId() {
         return employeeId;
     }
 

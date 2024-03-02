@@ -1,7 +1,5 @@
 package campolina.hrgroup.hrapp.model;
 
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +16,7 @@ public class JobPosting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int jobPostingId;
+    private long jobPostingId;
 
     @NotNull
     private int positionId;
@@ -29,23 +27,23 @@ public class JobPosting {
     @NotNull
     private int vacancy;
 
-    @NotBlank
+    @NotNull
     private Date closedDate;
 
-    @NotBlank
+    @NotNull
     private Date uploadDate;
 
-    @NotBlank
+    @NotNull
     private double salaryOffer;
 
     @NotBlank
     private String status;
 
-    public int getJobPostingId() {
+    public long getJobPostingId() {
         return jobPostingId;
     }
 
-    public void setJobPostingId(int jobPostingId) {
+    public void setJobPostingId(long jobPostingId) {
         this.jobPostingId = jobPostingId;
     }
 

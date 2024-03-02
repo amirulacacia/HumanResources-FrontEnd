@@ -14,7 +14,7 @@ public class JobPosition {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int positionId;
+    private long positionId;
 
     @NotBlank
     private String name;
@@ -25,13 +25,13 @@ public class JobPosition {
     @NotBlank
     private String requirement;
 
-    private int departmentId;
+    private long departmentId;
 
-    public int getPositionId() {
+    public long getPositionId() {
         return positionId;
     }
 
-    public void setPositionId(int positionId) {
+    public void setPositionId(long positionId) {
         this.positionId = positionId;
     }
 
@@ -59,7 +59,7 @@ public class JobPosition {
         this.requirement = requirement;
     }
 
-    public int getDepartmentId() {
+    public long getDepartmentId() {
         return departmentId;
     }
 

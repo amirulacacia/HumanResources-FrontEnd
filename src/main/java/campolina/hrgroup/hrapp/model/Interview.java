@@ -1,12 +1,17 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -17,18 +22,16 @@ public class Interview {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int interviewId;
 
-    @NotBlank
-    private String appointmentDate;
-
-    @NotBlank
-    private String appointmentTime;
+    @Column(nullable = false, name = "appointment_datetime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date appointmentDateTime;
 
     @NotBlank
     private String platform;
 
-    private int employeeId;
+    private long employeeId;
 
-    private int applicantId;
+    private long applicantId;
 
     public int getInterviewId() {
         return interviewId;
@@ -38,20 +41,12 @@ public class Interview {
         this.interviewId = interviewId;
     }
 
-    public String getAppointmentDate() {
-        return appointmentDate;
+    public Date getAppointmentDateTime() {
+        return appointmentDateTime;
     }
 
-    public void setAppointmentDate(String appointmentDate) {
-        this.appointmentDate = appointmentDate;
-    }
-
-    public String getAppointmentTime() {
-        return appointmentTime;
-    }
-
-    public void setAppointmentTime(String appointmentTime) {
-        this.appointmentTime = appointmentTime;
+    public void setAppointmentDateTime(Date appointmentDateTime) {
+        this.appointmentDateTime = appointmentDateTime;
     }
 
     public String getPlatform() {
@@ -62,7 +57,7 @@ public class Interview {
         this.platform = platform;
     }
 
-    public int getEmployeeId() {
+    public long getEmployeeId() {
         return employeeId;
     }
 
@@ -70,11 +65,16 @@ public class Interview {
         this.employeeId = employeeId;
     }
 
-    public int getApplicantId() {
+    public long getApplicantId() {
         return applicantId;
     }
 
     public void setApplicantId(int applicantId) {
         this.applicantId = applicantId;
+    }
+
+    public String getFormattedAppointmentDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return dateFormat.format(appointmentDateTime);
     }
 }

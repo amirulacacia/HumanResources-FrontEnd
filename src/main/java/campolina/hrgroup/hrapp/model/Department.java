@@ -15,12 +15,12 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int departmentId;
+    private long departmentId;
 
     @NotBlank
     private String name;
 
-    public int getDepartmentId() {
+    public long getDepartmentId() {
         return departmentId;
     }
 
