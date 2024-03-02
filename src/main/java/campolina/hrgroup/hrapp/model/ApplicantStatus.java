@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -32,6 +34,10 @@ public class ApplicantStatus {
 
     @NotBlank
     private String status;
+
+    @OneToOne
+    @JoinColumn(name = "applicantStatus_id", referencedColumnName = "applicantStatus_id")
+    private ApplicantStatus applicantStatus;
 
     public Long getApplicantStatusId() {
         return applicantStatusId;

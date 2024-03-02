@@ -1,9 +1,11 @@
 package campolina.hrgroup.hrapp.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -13,59 +15,47 @@ public class AdditionalInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long additionInfoId;
+    @Column(name = "additionalInfo_id")
+    private Long additionInfoId;
 
-    private boolean relocation;
+    @Column(name = "relocation")
+    private Boolean relocation;
 
-    private String references;
+    @Column(name = "expected_salary")
+    private Double expectedSalary;
 
-    private double expectedSalary;
-
-    private int noticePeriod;
+    @Column(name = "notice_period")
+    private Integer noticePeriod;
 
     @OneToOne
+    @JoinColumn(name = "applicant_id")
     private Applicant applicant;
 
     @OneToOne
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    public long getAdditionInfoId() {
+    public Long getAdditionInfoId() {
         return additionInfoId;
     }
 
-    public void setAdditionInfoId(long additionInfoId) {
+    public void setAdditionInfoId(Long additionInfoId) {
         this.additionInfoId = additionInfoId;
     }
 
-    public boolean isRelocation() {
-        return relocation;
-    }
-
-    public void setRelocation(boolean relocation) {
-        this.relocation = relocation;
-    }
-
-    public String getReferences() {
-        return references;
-    }
-
-    public void setReferences(String references) {
-        this.references = references;
-    }
-
-    public double getExpectedSalary() {
+    public Double getExpectedSalary() {
         return expectedSalary;
     }
 
-    public void setExpectedSalary(double expectedSalary) {
+    public void setExpectedSalary(Double expectedSalary) {
         this.expectedSalary = expectedSalary;
     }
 
-    public int getNoticePeriod() {
+    public Integer getNoticePeriod() {
         return noticePeriod;
     }
 
-    public void setNoticePeriod(int noticePeriod) {
+    public void setNoticePeriod(Integer noticePeriod) {
         this.noticePeriod = noticePeriod;
     }
 
@@ -83,5 +73,13 @@ public class AdditionalInfo {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+    
+    public Boolean getRelocation() {
+        return relocation;
+    }
+
+    public void setRelocation(Boolean relocation) {
+        this.relocation = relocation;
     }
 }

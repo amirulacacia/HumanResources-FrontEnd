@@ -16,7 +16,7 @@ public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "certificate_id")
-    private Long skillId;
+    private Long certificateId;
 
     @NotBlank
     @Column(name = "certificate_location")
@@ -42,8 +42,8 @@ public class Certificate {
         return employee;
     }
 
-    public Long getSkillId() {
-        return skillId;
+    public Long getCertificateId() {
+        return certificateId;
     }
 
     public void setApplicant(Applicant applicant) {
@@ -58,8 +58,7 @@ public class Certificate {
         this.employee = employee;
     }
 
-    public void setSkillId(Long skillId) {
-        this.skillId = skillId;
+    public void setCertificateId(Long certificateId) {
+        this.certificateId = certificateId;
     }
-    
 }

@@ -19,6 +19,7 @@ public class Skill {
     private Long skillId;
 
     @NotBlank
+    @Column(name = "skill")
     private String skill;
 
     @ManyToOne

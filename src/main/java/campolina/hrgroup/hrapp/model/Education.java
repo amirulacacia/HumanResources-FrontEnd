@@ -18,16 +18,18 @@ public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "education_id")
-    private Long addressId;
+    private Long educationId;
 
     @NotBlank
     @Column(name = "education_level")
     private String educationLevel;
 
     @NotBlank
+    @Column(name = "major")
     private String major;
 
     @NotBlank
+    @Column(name = "school")
     private String school;
 
     @Column(name = "start_date")
@@ -52,8 +54,8 @@ public class Education {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    public Long getAddressId() {
-        return addressId;
+    public Long getEducationId() {
+        return educationId;
     }
 
     public Applicant getApplicant() {
@@ -92,8 +94,8 @@ public class Education {
         return startDate;
     }
     
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
+    public void setEducationId(Long educationId) {
+        this.educationId = educationId;
     }
 
     public void setApplicant(Applicant applicant) {
