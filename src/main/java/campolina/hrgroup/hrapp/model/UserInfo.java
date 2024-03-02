@@ -25,7 +25,6 @@ public class UserInfo {
     @Column(name = "middle_name")
     private String middleName;
 
-    @NotBlank
     @Column(name = "last_name")
     private String lastName;
 
