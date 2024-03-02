@@ -118,4 +118,5 @@ public class Applicant {
     public void setApplicantStatus(ApplicantStatus applicantStatus) {
         this.applicantStatus = applicantStatus;
     }
+
 }
