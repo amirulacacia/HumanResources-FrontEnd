@@ -7,13 +7,13 @@ import campolina.hrgroup.hrapp.model.UserDocuments;
 @Service
 public interface UserDocumentsService {
 
-    UserDocuments createUserDocuments(UserDocuments userDocuments);
+    UserDocuments createUserDocuments(UserDocuments userDocuments, String user, Long userId);
 
-    UserDocuments getUserDocumentsById(Long userDocumentsId);
+    UserDocuments getUserDocumentsById(Long id);
 
     List<UserDocuments> getAllUserDocuments();
 
-    UserDocuments updateUserDocuments(UserDocuments userDocuments);
+    UserDocuments updateUserDocuments(UserDocuments userDocuments, Long id);
 
-    String deleteUserDocuments(Long userDocumentsId);
+    String deleteUserDocuments(Long id);
 }

@@ -1,6 +1,8 @@
 package campolina.hrgroup.hrapp.service.serviceImplementation;
 
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,8 +34,14 @@ public class DepartmentServiceImplementation implements DepartmentService {
     }
 
     @Override
-    public Department updateDepartment(Department department) {
-        return departmentRepository.save(department);
+    public Department updateDepartment(Department department, Long id) {
+        Department departmentDB = departmentRepository.findById(id).get();
+
+        if (Objects.nonNull(department.getName())) {
+            departmentDB.setName(department.getName());
+        }
+        
+        return departmentRepository.save(departmentDB);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class AdditionalInfo {
     private Employee employee;
 
     @OneToMany
-    @JoinColumn(name = "fk_additionalInfo_id", referencedColumnName = "additional_info_id")
+    @JoinColumn(name = "fk_additional_info_id", referencedColumnName = "additional_info_id")
     private List<Reference> references;
 
     public Long getAdditionInfoId() {
@@ -66,17 +66,17 @@ public class AdditionalInfo {
         this.noticePeriod = noticePeriod;
     }
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;

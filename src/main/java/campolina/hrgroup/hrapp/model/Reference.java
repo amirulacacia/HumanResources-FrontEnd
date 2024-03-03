@@ -33,7 +33,7 @@ public class Reference {
     private String contactNumber;
 
     @ManyToOne
-    @JoinColumn(name = "fk_additionalInfo_id")
+    @JoinColumn(name = "fk_additional_info_id")
     private AdditionalInfo additionalInfo;
 
     public AdditionalInfo getAdditionalInfo() {

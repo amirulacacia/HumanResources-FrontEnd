@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -34,8 +33,11 @@ public class ApplicantStatus {
     @NotBlank
     private String status;
 
-    @OneToOne(mappedBy = "applicantStatus")
-    private Applicant applicant;
+    @NotBlank
+    private Long fk_applicant_id;
+
+    @NotBlank
+    private Long fk_job_post_id;
 
     public Long getApplicantStatusId() {
         return applicantStatusId;
@@ -61,11 +63,19 @@ public class ApplicantStatus {
         this.status = status;
     }
 
-    public Applicant getApplicant() {
-        return applicant;
+    public Long getFk_applicant_id() {
+        return fk_applicant_id;
+    }
+    
+    public void setFk_applicant_id(Long fk_applicant_id) {
+        this.fk_applicant_id = fk_applicant_id;
     }
 
-    public void setApplicant(Applicant applicant) {
-        this.applicant = applicant;
+    public Long getFk_job_post_id() {
+        return fk_job_post_id;
+    }
+    
+    public void setFk_job_post_id(Long fk_job_post_id) {
+        this.fk_job_post_id = fk_job_post_id;
     }
 }

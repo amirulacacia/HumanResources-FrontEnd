@@ -30,13 +30,13 @@ public class Skill {
     @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public String getSkill() {
         return skill;

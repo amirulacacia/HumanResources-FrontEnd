@@ -1,11 +1,15 @@
 package campolina.hrgroup.hrapp.service.serviceImplementation;
 
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import campolina.hrgroup.hrapp.model.UserDiversity;
+import campolina.hrgroup.hrapp.repository.ApplicantRepository;
+import campolina.hrgroup.hrapp.repository.EmployeeRepository;
 import campolina.hrgroup.hrapp.repository.UserDiversityRepository;
 import campolina.hrgroup.hrapp.service.UserDiversityService;
 
@@ -15,15 +19,29 @@ public class UserDiversityServiceImplementation implements UserDiversityService 
 
     @Autowired
     private UserDiversityRepository userDiversityRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private ApplicantRepository applicantRepository;
 
     @Override
-    public UserDiversity createUserDiversity(UserDiversity userDiversity) {
+    public UserDiversity createUserDiversity(UserDiversity userDiversity, String user, Long userId) {
+        switch (user) {
+            case "employee":
+                userDiversity.setEmployee(employeeRepository.findById(userId).get());
+                break;
+            case "applicant":
+                userDiversity.setApplicant(applicantRepository.findById(userId).get());
+                break;
+            default:
+                break;
+        }
         return userDiversityRepository.save(userDiversity);
     }
 
     @Override
-    public UserDiversity getUserDiversityById(Long userDiversityId) {
-        return userDiversityRepository.findById(userDiversityId).orElse(null);
+    public UserDiversity getUserDiversityById(Long id) {
+        return userDiversityRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -32,14 +50,28 @@ public class UserDiversityServiceImplementation implements UserDiversityService 
     }
 
     @Override
-    public UserDiversity updateUserDiversity(UserDiversity userDiversity) {
-        return userDiversityRepository.save(userDiversity);
+    public UserDiversity updateUserDiversity(UserDiversity userDiversity, Long id) {
+        UserDiversity userDiversityDB = userDiversityRepository.findById(id).get();
+
+        if (Objects.nonNull(userDiversity.getGender())) {
+            userDiversityDB.setGender(userDiversity.getGender());
+        }
+
+        if (Objects.nonNull(userDiversity.getBirthDate())) {
+            userDiversityDB.setBirthDate(userDiversity.getBirthDate());
+        }
+
+        if (Objects.nonNull(userDiversity.getMaritalStatus())) {
+            userDiversityDB.setMaritalStatus(userDiversity.getMaritalStatus());
+        }
+
+        return userDiversityRepository.save(userDiversityDB);
     }
 
     @Override
-    public String deleteUserDiversity(Long userDiversityId) {
-        userDiversityRepository.deleteById(userDiversityId);
-        return "User diversity with ID: " + userDiversityId + " has been deleted successfully";
+    public String deleteUserDiversity(Long id) {
+        userDiversityRepository.deleteById(id);
+        return "User diversity with ID: " + id + " has been deleted successfully";
     }
 }
 

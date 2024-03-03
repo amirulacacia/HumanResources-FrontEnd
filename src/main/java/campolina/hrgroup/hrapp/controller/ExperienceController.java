@@ -13,9 +13,10 @@ public class ExperienceController {
     @Autowired
     private ExperienceService experienceService;
 
-    @PostMapping
-    public Experience createExperience(@RequestBody Experience experience) {
-        return experienceService.createExperience(experience);
+    @PostMapping("{user}/{userId}")
+    public Experience createExperience(@RequestBody Experience experience,
+    @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return experienceService.createExperience(experience, user, userId);
     }
 
     @GetMapping("/{experienceId}")
@@ -31,7 +32,7 @@ public class ExperienceController {
     @PutMapping("/{experienceId}")
     public Experience updateExperience(@RequestBody Experience experience,
                                        @PathVariable Long experienceId) {
-        return experienceService.updateExperience(experience);
+        return experienceService.updateExperience(experience, experienceId);
     }
 
     @DeleteMapping("/{experienceId}")

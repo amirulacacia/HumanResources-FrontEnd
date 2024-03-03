@@ -14,9 +14,10 @@ public class UserDiversityController {
     @Autowired
     private UserDiversityService userDiversityService;
 
-    @PostMapping
-    public UserDiversity createUserDiversity(@RequestBody UserDiversity userDiversity) {
-        return userDiversityService.createUserDiversity(userDiversity);
+    @PostMapping("{user}/{userId}")
+    public UserDiversity createUserDiversity(@RequestBody UserDiversity userDiversity,
+            @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return userDiversityService.createUserDiversity(userDiversity, user, userId);
     }
 
     @GetMapping("/{userDiversityId}")
@@ -31,8 +32,8 @@ public class UserDiversityController {
 
     @PutMapping("/{userDiversityId}")
     public UserDiversity updateUserDiversity(@RequestBody UserDiversity userDiversity,
-                                              @PathVariable Long userDiversityId) {
-        return userDiversityService.updateUserDiversity(userDiversity);
+            @PathVariable Long userDiversityId) {
+        return userDiversityService.updateUserDiversity(userDiversity, userDiversityId);
     }
 
     @DeleteMapping("/{userDiversityId}")
@@ -40,4 +41,3 @@ public class UserDiversityController {
         return userDiversityService.deleteUserDiversity(userDiversityId);
     }
 }
-

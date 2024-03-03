@@ -9,11 +9,19 @@ public interface EmployeeService {
     
     Employee createEmployee(Employee employee);
 
-    Employee getEmployeeById(long employeeId);
+    Employee getEmployeeById(Long id);
 
     List<Employee> getAllEmployees();
 
-    Employee updateEmployee(Employee employee);
+    Employee updateEmployee(Employee employee, Long id);
 
-    String deleteEmployee(long employeeId);
+    String deleteEmployee(Long id);
+
+    Employee assignPositionToEmployee(Long id, Long positionId);
+
+    Employee removePositionToEmployee(Long id);
+
+    Employee assignInterviewToEmployee(Long id, Long interviewId);
+
+    Employee removeInterviewFromEmployee(Long id, Long interviewId);
 }

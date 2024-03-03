@@ -30,17 +30,17 @@ public class Certificate {
     @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public String getCertificateLocation() {
         return certificateLocation;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public Long getCertificateId() {
         return certificateId;

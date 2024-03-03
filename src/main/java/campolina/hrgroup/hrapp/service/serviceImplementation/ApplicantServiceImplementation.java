@@ -39,12 +39,6 @@ public class ApplicantServiceImplementation implements ApplicantService {
     }
 
     @Override
-    public Applicant save(Applicant applicant, Long id) {
-        applicant.setApplicantId(id);
-        return applicantRepository.save(applicant);
-    }
-
-    @Override
     public Applicant save(Applicant applicant) {
         return applicantRepository.save(applicant);
     }

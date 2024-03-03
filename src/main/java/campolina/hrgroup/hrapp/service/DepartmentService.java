@@ -13,7 +13,7 @@ public interface DepartmentService {
 
     List<Department> getAllDepartments();
 
-    Department updateDepartment(Department department);
+    Department updateDepartment(Department department, Long id);
 
     String deleteDepartment(Long departmentId);
 }

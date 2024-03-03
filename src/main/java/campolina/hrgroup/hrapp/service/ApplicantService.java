@@ -14,8 +14,6 @@ public interface ApplicantService {
     Applicant updateApplicant(Applicant applicant, Long id);
 
     Applicant findById(Long id);
-
-    Applicant save(Applicant applicant, Long id);
     
     Applicant save(Applicant applicant);
 }

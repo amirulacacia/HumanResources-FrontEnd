@@ -13,9 +13,9 @@ public class JobPostingController {
     @Autowired
     private JobPostingService jobPostingService;
 
-    @PostMapping
-    public JobPosting createJobPosting(@RequestBody JobPosting jobPosting) {
-        return jobPostingService.createJobPosting(jobPosting);
+    @PostMapping("/jobPosition/{jobPositionId}") // id of job position
+    public JobPosting createJobPosting(@RequestBody JobPosting jobPosting, @PathVariable Long jobPositionId) {
+        return jobPostingService.createJobPosting(jobPosting, jobPositionId);
     }
 
     @GetMapping("/{jobPostingId}")
@@ -31,7 +31,7 @@ public class JobPostingController {
     @PutMapping("/{jobPostingId}")
     public JobPosting updateJobPosting(@RequestBody JobPosting jobPosting,
                                        @PathVariable Long jobPostingId) {
-        return jobPostingService.updateJobPosting(jobPosting);
+        return jobPostingService.updateJobPosting(jobPosting, jobPostingId);
     }
 
     @DeleteMapping("/{jobPostingId}")

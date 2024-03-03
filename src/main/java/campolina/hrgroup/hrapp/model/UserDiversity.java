@@ -1,7 +1,5 @@
 package campolina.hrgroup.hrapp.model;
 
-import java.util.Date;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +26,7 @@ public class UserDiversity {
 
     @Column(nullable = false, name = "birth_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date birthDate;
+    private String birthDate;
 
     @NotBlank
     @Column(name = "marital_status")
@@ -42,24 +40,24 @@ public class UserDiversity {
     @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
     
     public void setEmployee(Employee employee) {
         this.employee = employee;

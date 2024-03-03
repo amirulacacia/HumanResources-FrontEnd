@@ -1,6 +1,8 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -31,13 +34,13 @@ public class Applicant {
     @NotBlank
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_job_post_id")
-    private JobPosting jobPosting;
-
-    @OneToOne
-    @JoinColumn(name = "fk_applicant_status_id")
-    private ApplicantStatus applicantStatus;
+    @ManyToMany
+    @JoinTable(
+        name = "applicant_status",
+        joinColumns = @JoinColumn(name = "fk_applicant_id"),
+        inverseJoinColumns = @JoinColumn(name = "fk_job_post_id")
+    )
+    private Set<JobPosting> jobStatus = new HashSet<>();
 
     @OneToOne(mappedBy = "applicant")
     private UserInfo userInfo;
@@ -97,20 +100,12 @@ public class Applicant {
         this.password = password;
     }
 
-    public JobPosting getJobPosting() {
-        return jobPosting;
+    public Set<JobPosting> getJobStatus() {
+        return jobStatus;
     }
 
-    public void setJobPosting(JobPosting jobPosting) {
-        this.jobPosting = jobPosting;
-    }
-
-    public ApplicantStatus getApplicantStatus() {
-        return applicantStatus;
-    }
-
-    public void setApplicantStatus(ApplicantStatus applicantStatus) {
-        this.applicantStatus = applicantStatus;
+    public void setJobStatus(Set<JobPosting> jobStatus) {
+        this.jobStatus = jobStatus;
     }
 
     public AdditionalInfo getAdditionalInfo() {

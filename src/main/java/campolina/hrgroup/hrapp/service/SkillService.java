@@ -7,13 +7,13 @@ import campolina.hrgroup.hrapp.model.Skill;
 @Service
 public interface SkillService {
     
-    Skill createSkill(Skill skill);
+    Skill createSkill(Skill skill, String user, Long userId);
 
-    Skill getSkillById(Long skillId);
+    Skill getSkillById(Long id);
 
     List<Skill> getAllSkills();
 
-    Skill updateSkill(Skill skill);
+    Skill updateSkill(Skill skill, Long id);
 
-    String deleteSkill(Long skillId);
+    String deleteSkill(Long id);
 }

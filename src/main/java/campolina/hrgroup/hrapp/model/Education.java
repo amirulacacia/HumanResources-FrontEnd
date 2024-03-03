@@ -1,5 +1,7 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.time.Year;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +46,7 @@ public class Education {
     private String cgpa;
 
     @Column(name = "graduation_year")
-    private String graduationYear;
+    private Year graduationYear;
 
     @ManyToOne
     @JoinColumn(name = "fk_applicant_id")
@@ -58,9 +60,9 @@ public class Education {
         return educationId;
     }
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public String getCgpa() {
         return cgpa;
@@ -70,15 +72,15 @@ public class Education {
         return educationLevel;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public String getEndDate() {
         return endDate;
     }
 
-    public String getGraduationYear() {
+    public Year getGraduationYear() {
         return graduationYear;
     }
 
@@ -118,7 +120,7 @@ public class Education {
         this.endDate = endDate;
     }
 
-    public void setGraduationYear(String graduationYear) {
+    public void setGraduationYear(Year graduationYear) {
         this.graduationYear = graduationYear;
     }
 

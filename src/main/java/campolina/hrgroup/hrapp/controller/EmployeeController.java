@@ -20,7 +20,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{employeeId}")
-    public Employee getEmployeeById(@PathVariable long employeeId) {
+    public Employee getEmployeeById(@PathVariable Long employeeId) {
         return employeeService.getEmployeeById(employeeId);
     }
 
@@ -29,15 +29,37 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    // @PutMapping("/{employeeId}")
-    // public Employee updateEmployee(@RequestBody Employee employee,
-    //                                @PathVariable long employeeId) {
-    //     return employeeService.updateEmployee(employee);
-    // }
+    @PutMapping("/{employeeId}")
+    public Employee updateEmployee(@RequestBody Employee employee,
+            @PathVariable Long employeeId) {
+        return employeeService.updateEmployee(employee, employeeId);
+    }
 
-    // @DeleteMapping("/{employeeId}")
-    // public String deleteEmployee(@PathVariable long employeeId) {
-    //     return employeeService.deleteEmployee(employeeId);
-    // }
+    @DeleteMapping("/{employeeId}")
+    public String deleteEmployee(@PathVariable Long employeeId) {
+        return employeeService.deleteEmployee(employeeId);
+    }
+
+    @PutMapping("/{employeeId}/position/{positionId}")
+    public Employee assignPositionToEmployee(@PathVariable("employeeId") Long employeeId,
+            @PathVariable("positionId") Long positionId) {
+        return employeeService.assignPositionToEmployee(employeeId, positionId);
+    }
+
+    @PutMapping("/{employeeId}/position")
+    public Employee removePositionToEmployee(@PathVariable Long employeeId) {
+        return employeeService.removePositionToEmployee(employeeId);
+    }
+
+    @PutMapping("/{employeeId}/interview/{interviewId}")
+    public Employee assignInterviewToEmployee(@PathVariable("employeeId") Long employeeId,
+            @PathVariable("interviewId") Long interviewId) {
+        return employeeService.assignInterviewToEmployee(employeeId, interviewId);
+    }
+
+    @PutMapping("/{employeeId}/remove-interview/{interviewId}")
+    public Employee removeInterviewFromEmployee(@PathVariable("employeeId") Long employeeId,
+            @PathVariable("interviewId") Long interviewId) {
+        return employeeService.removeInterviewFromEmployee(employeeId, interviewId);
+    }
 }
-

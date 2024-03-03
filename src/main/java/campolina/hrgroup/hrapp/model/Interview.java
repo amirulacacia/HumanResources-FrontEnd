@@ -1,7 +1,6 @@
 package campolina.hrgroup.hrapp.model;
 
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +28,7 @@ public class Interview {
 
     @Column(nullable = false, name = "appointment_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date appointmentDate;
+    private String appointmentDate;
 
     @Column(nullable = false, name = "appointment_time")
     private LocalTime appointmentTime;
@@ -44,19 +43,19 @@ public class Interview {
     @ManyToMany(mappedBy = "assignInterview")
     private Set<Employee> assignEmployees = new HashSet<>();
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
     }
 
-    public Date getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
     
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -84,9 +83,9 @@ public class Interview {
         this.platform = platform;
     }
 
-    public Set<Employee> getAssignEmployees() {
-        return assignEmployees;
-    }
+    // public Set<Employee> getAssignEmployees() {
+    //     return assignEmployees;
+    // }
 
     public void setAssignEmployees(Set<Employee> assignEmployees) {
         this.assignEmployees = assignEmployees;

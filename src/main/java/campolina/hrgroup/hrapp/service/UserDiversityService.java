@@ -7,13 +7,13 @@ import campolina.hrgroup.hrapp.model.UserDiversity;
 @Service
 public interface UserDiversityService {
    
-    UserDiversity createUserDiversity(UserDiversity userDiversity);
+    UserDiversity createUserDiversity(UserDiversity userDiversity, String user, Long userId);
 
-    UserDiversity getUserDiversityById(Long userDiversityId);
+    UserDiversity getUserDiversityById(Long id);
 
     List<UserDiversity> getAllUserDiversities();
 
-    UserDiversity updateUserDiversity(UserDiversity userDiversity);
+    UserDiversity updateUserDiversity(UserDiversity userDiversity, Long id);
 
-    String deleteUserDiversity(Long userDiversityId);
+    String deleteUserDiversity(Long id);
 }

@@ -69,9 +69,9 @@ public class Address {
         return addressLine3;
     }
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public String getCity() {
         return city;
@@ -81,9 +81,9 @@ public class Address {
         return country;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public String getPostcode() {
         return postcode;

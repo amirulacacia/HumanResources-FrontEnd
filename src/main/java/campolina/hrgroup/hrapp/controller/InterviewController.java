@@ -13,9 +13,9 @@ public class InterviewController {
     @Autowired
     private InterviewService interviewService;
 
-    @PostMapping
-    public Interview createInterview(@RequestBody Interview interview) {
-        return interviewService.createInterview(interview);
+    @PostMapping("/applicant/{applicantId}")
+    public Interview createInterview(@RequestBody Interview interview, @PathVariable Long applicantId) {
+        return interviewService.createInterview(interview, applicantId);
     }
 
     @GetMapping("/{interviewId}")
@@ -30,8 +30,8 @@ public class InterviewController {
 
     @PutMapping("/{interviewId}")
     public Interview updateInterview(@RequestBody Interview interview,
-                                      @PathVariable Long interviewId) {
-        return interviewService.updateInterview(interview);
+            @PathVariable Long interviewId) {
+        return interviewService.updateInterview(interview, interviewId);
     }
 
     @DeleteMapping("/{interviewId}")
@@ -39,4 +39,3 @@ public class InterviewController {
         return interviewService.deleteInterview(interviewId);
     }
 }
-

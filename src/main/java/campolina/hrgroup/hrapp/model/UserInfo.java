@@ -49,9 +49,9 @@ public class UserInfo {
     @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
@@ -73,9 +73,9 @@ public class UserInfo {
         this.email = email;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;

@@ -1,12 +1,17 @@
 package campolina.hrgroup.hrapp.service.serviceImplementation;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import campolina.hrgroup.hrapp.model.Address;
 import campolina.hrgroup.hrapp.repository.AddressRepository;
+import campolina.hrgroup.hrapp.repository.ApplicantRepository;
+import campolina.hrgroup.hrapp.repository.EmployeeRepository;
 import campolina.hrgroup.hrapp.service.AddressService;
 
 @Service
@@ -14,15 +19,29 @@ import campolina.hrgroup.hrapp.service.AddressService;
 public class AddressServiceImplementation implements AddressService{
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private ApplicantRepository applicantRepository;
 
     @Override
-    public Address createAddress(Address address) {
+    public Address createAddress(Address address, String user, Long userId) {
+        switch (user) {
+            case "employee":
+                address.setEmployee(employeeRepository.findById(userId).get());
+                break;
+            case "applicant":
+                address.setApplicant(applicantRepository.findById(userId).get());
+                break;
+            default:
+                break;
+        }
         return addressRepository.save(address);
     }
 
     @Override
-    public Address getAddressById(Long addressId) {
-        return addressRepository.findById(addressId).orElse(null);
+    public Address getAddressById(Long id) {
+        return addressRepository.findById(id).orElseThrow(()-> new NoSuchElementException("There is no Address of this id"));
     }
 
     @Override
@@ -31,13 +50,44 @@ public class AddressServiceImplementation implements AddressService{
     }
 
     @Override
-    public Address updateAddress(Address address) {
-        return addressRepository.save(address);
+    public Address updateAddress(Address address, Long id) {
+        Address addressDB = addressRepository.findById(id).get();
+
+        if (Objects.nonNull(address.getCountry())) {
+            addressDB.setCountry(address.getCountry());
+        }
+
+        if (Objects.nonNull(address.getState())) {
+            addressDB.setState(address.getState());
+        }
+
+        if (Objects.nonNull(address.getAddressLine1())) {
+            addressDB.setAddressLine1(address.getAddressLine1());
+        }
+
+        if (Objects.nonNull(address.getAddressLine1())) {
+            addressDB.setAddressLine1(address.getAddressLine1());
+        }
+
+        if (Objects.nonNull(address.getAddressLine2())) {
+            addressDB.setAddressLine2(address.getAddressLine2());
+        }
+
+        if (Objects.nonNull(address.getAddressLine3())) {
+            addressDB.setAddressLine3(address.getAddressLine3());
+        }
+
+        if (Objects.nonNull(address.getCity())) {
+            addressDB.setCity(address.getCity());
+        }
+
+        return addressRepository.save(addressDB);
     }
 
     @Override
-    public String deleteAddress(Long addressId) {
-        addressRepository.deleteById(addressId);
-        return "Address with ID: " + addressId + " has been deleted successfully";
+    public String deleteAddress(Long id) {
+        addressRepository.findById(id).orElseThrow(()-> new NoSuchElementException("There is no Address of this id to be delete"));
+        addressRepository.deleteById(id);
+        return "Address with ID: " + id + " has been deleted successfully";
     }
 }

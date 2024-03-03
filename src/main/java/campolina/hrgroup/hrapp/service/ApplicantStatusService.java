@@ -6,14 +6,10 @@ import campolina.hrgroup.hrapp.model.ApplicantStatus;
 
 @Service
 public interface ApplicantStatusService {
-    
-    ApplicantStatus createApplicantStatus(ApplicantStatus applicantStatus);
 
     ApplicantStatus getApplicantStatusById(Long applicantStatusId);
 
     List<ApplicantStatus> getAllApplicantStatuses();
 
-    ApplicantStatus updateApplicantStatus(ApplicantStatus applicantStatus);
-
-    String deleteApplicantStatus(Long applicantStatusId);
+    ApplicantStatus updateApplicantStatus(ApplicantStatus applicantStatus, Long id);
 }

@@ -13,9 +13,10 @@ public class UserDocumentsController {
     @Autowired
     private UserDocumentsService userDocumentsService;
 
-    @PostMapping
-    public UserDocuments createUserDocuments(@RequestBody UserDocuments userDocuments) {
-        return userDocumentsService.createUserDocuments(userDocuments);
+    @PostMapping("{user}/{userId}")
+    public UserDocuments createUserDocuments(@RequestBody UserDocuments userDocuments,
+            @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return userDocumentsService.createUserDocuments(userDocuments, user, userId);
     }
 
     @GetMapping("/{userDocumentsId}")
@@ -30,8 +31,8 @@ public class UserDocumentsController {
 
     @PutMapping("/{userDocumentsId}")
     public UserDocuments updateUserDocuments(@RequestBody UserDocuments userDocuments,
-                                             @PathVariable Long userDocumentsId) {
-        return userDocumentsService.updateUserDocuments(userDocuments);
+            @PathVariable Long userDocumentsId) {
+        return userDocumentsService.updateUserDocuments(userDocuments, userDocumentsId);
     }
 
     @DeleteMapping("/{userDocumentsId}")
@@ -39,4 +40,3 @@ public class UserDocumentsController {
         return userDocumentsService.deleteUserDocuments(userDocumentsId);
     }
 }
-

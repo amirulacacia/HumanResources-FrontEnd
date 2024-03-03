@@ -14,9 +14,10 @@ public class AdditionalInfoController {
     @Autowired
     private AdditionalInfoService additionalInfoService;
 
-    @PostMapping
-    public AdditionalInfo createAdditionalInfo(@RequestBody AdditionalInfo additionalInfo) {
-        return additionalInfoService.createAdditionalInfo(additionalInfo);
+    @PostMapping("{user}/{userId}")
+    public AdditionalInfo createAdditionalInfo(@RequestBody AdditionalInfo additionalInfo,
+            @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return additionalInfoService.createAdditionalInfo(additionalInfo, user, userId);
     }
 
     @GetMapping("/{additionalInfoId}")
@@ -29,15 +30,14 @@ public class AdditionalInfoController {
         return additionalInfoService.getAllAdditionalInfo();
     }
 
-    // @PutMapping("/{additionalInfoId}")
-    // public AdditionalInfo updateAdditionalInfo(@RequestBody AdditionalInfo additionalInfo, @PathVariable Long additionalInfoId) {
-    //     additionalInfo.setAdditionInfoId(additionalInfoId);
-    //     return additionalInfoService.updateAdditionalInfo(additionalInfo);
-    // }
+    @PutMapping("/{additionalInfoId}")
+    public AdditionalInfo updateAdditionalInfo(@RequestBody AdditionalInfo additionalInfo,
+            @PathVariable Long additionalInfoId) {
+        return additionalInfoService.updateAdditionalInfo(additionalInfo, additionalInfoId);
+    }
 
-    // @DeleteMapping("/{additionalInfoId}")
-    // public String deleteAdditionalInfo(@PathVariable Long additionalInfoId) {
-    //     return additionalInfoService.deleteAdditionalInfo(additionalInfoId);
-    // }
+    @DeleteMapping("/{additionalInfoId}")
+    public String deleteAdditionalInfo(@PathVariable Long additionalInfoId) {
+        return additionalInfoService.deleteAdditionalInfo(additionalInfoId);
+    }
 }
-
