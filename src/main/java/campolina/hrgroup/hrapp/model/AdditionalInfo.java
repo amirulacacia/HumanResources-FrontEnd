@@ -1,87 +1,100 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "additional_info")
 public class AdditionalInfo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long additionInfoId;
+    @Column(name = "additional_info_id")
+    private Long additionInfoId;
 
-    private boolean relocation;
+    @Column(name = "relocation")
+    private Boolean relocation;
 
-    private String references;
+    @Column(name = "expected_salary")
+    private Double expectedSalary;
 
-    private double expectedSalary;
+    @Column(name = "notice_period")
+    private Integer noticePeriod;
 
-    private int noticePeriod;
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public long getAdditionInfoId() {
+    @OneToMany
+    @JoinColumn(name = "fk_additional_info_id", referencedColumnName = "additional_info_id")
+    private List<Reference> references;
+
+    public Long getAdditionInfoId() {
         return additionInfoId;
     }
 
-    public void setAdditionInfoId(long additionInfoId) {
+    public void setAdditionInfoId(Long additionInfoId) {
         this.additionInfoId = additionInfoId;
     }
 
-    public boolean isRelocation() {
-        return relocation;
-    }
-
-    public void setRelocation(boolean relocation) {
-        this.relocation = relocation;
-    }
-
-    public String getReferences() {
-        return references;
-    }
-
-    public void setReferences(String references) {
-        this.references = references;
-    }
-
-    public double getExpectedSalary() {
+    public Double getExpectedSalary() {
         return expectedSalary;
     }
 
-    public void setExpectedSalary(double expectedSalary) {
+    public void setExpectedSalary(Double expectedSalary) {
         this.expectedSalary = expectedSalary;
     }
 
-    public int getNoticePeriod() {
+    public Integer getNoticePeriod() {
         return noticePeriod;
     }
 
-    public void setNoticePeriod(int noticePeriod) {
+    public void setNoticePeriod(Integer noticePeriod) {
         this.noticePeriod = noticePeriod;
     }
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+    
+    public Boolean getRelocation() {
+        return relocation;
+    }
+
+    public void setRelocation(Boolean relocation) {
+        this.relocation = relocation;
+    }
+
+    public List<Reference> getReferences() {
+        return references;
+    }
+
+    public void setReferences(List<Reference> references) {
+        this.references = references;
     }
 }

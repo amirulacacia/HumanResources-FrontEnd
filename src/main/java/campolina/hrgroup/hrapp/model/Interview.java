@@ -1,14 +1,17 @@
 package campolina.hrgroup.hrapp.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -20,33 +23,56 @@ public class Interview {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int interviewId;
+    @Column(name = "interview_id")
+    private Long interviewId;
 
-    @Column(nullable = false, name = "appointment_datetime")
+    @Column(nullable = false, name = "appointment_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date appointmentDateTime;
+    private String appointmentDate;
+
+    @Column(nullable = false, name = "appointment_time")
+    private LocalTime appointmentTime;
 
     @NotBlank
     private String platform;
 
-    private long employeeId;
+    @OneToOne
+    @JoinColumn(name = "fk_applicant_id")
+    private Applicant applicant;
 
-    private long applicantId;
+    @ManyToMany(mappedBy = "assignInterview")
+    private Set<Employee> assignEmployees = new HashSet<>();
 
-    public int getInterviewId() {
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
+
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
+    }
+
+    public String getAppointmentDate() {
+        return appointmentDate;
+    }
+    
+    public void setAppointmentDate(String appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
+
+    public LocalTime getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(LocalTime appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
+    public Long getInterviewId() {
         return interviewId;
     }
 
-    public void setInterviewId(int interviewId) {
+    public void setInterviewId(Long interviewId) {
         this.interviewId = interviewId;
-    }
-
-    public Date getAppointmentDateTime() {
-        return appointmentDateTime;
-    }
-
-    public void setAppointmentDateTime(Date appointmentDateTime) {
-        this.appointmentDateTime = appointmentDateTime;
     }
 
     public String getPlatform() {
@@ -57,24 +83,11 @@ public class Interview {
         this.platform = platform;
     }
 
-    public long getEmployeeId() {
-        return employeeId;
-    }
+    // public Set<Employee> getAssignEmployees() {
+    //     return assignEmployees;
+    // }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public long getApplicantId() {
-        return applicantId;
-    }
-
-    public void setApplicantId(int applicantId) {
-        this.applicantId = applicantId;
-    }
-
-    public String getFormattedAppointmentDateTime() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        return dateFormat.format(appointmentDateTime);
+    public void setAssignEmployees(Set<Employee> assignEmployees) {
+        this.assignEmployees = assignEmployees;
     }
 }

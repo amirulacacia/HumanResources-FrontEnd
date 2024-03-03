@@ -21,7 +21,7 @@ import jakarta.validation.constraints.NotBlank;
 public class ApplicantStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "applicantStatus_id")
+    @Column(name = "applicant_status_id")
     private Long applicantStatusId;
 
     @Column(nullable = false, updatable = false, name = "application_date")
@@ -32,6 +32,12 @@ public class ApplicantStatus {
 
     @NotBlank
     private String status;
+
+    @NotBlank
+    private Long fk_applicant_id;
+
+    @NotBlank
+    private Long fk_job_post_id;
 
     public Long getApplicantStatusId() {
         return applicantStatusId;
@@ -55,5 +61,21 @@ public class ApplicantStatus {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getFk_applicant_id() {
+        return fk_applicant_id;
+    }
+    
+    public void setFk_applicant_id(Long fk_applicant_id) {
+        this.fk_applicant_id = fk_applicant_id;
+    }
+
+    public Long getFk_job_post_id() {
+        return fk_job_post_id;
+    }
+    
+    public void setFk_job_post_id(Long fk_job_post_id) {
+        this.fk_job_post_id = fk_job_post_id;
     }
 }

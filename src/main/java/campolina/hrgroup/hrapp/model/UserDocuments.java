@@ -1,5 +1,6 @@
 package campolina.hrgroup.hrapp.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import jakarta.validation.constraints.NotBlank;
 public class UserDocuments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userDocs_id")
+    @Column(name = "user_docs_id")
     private Long userDocsId;
 
     @NotBlank
@@ -25,14 +26,15 @@ public class UserDocuments {
     @Column(name = "cover_letter_location")
     private String coverLetterLocation;
 
+    @Column(name = "link")
     private String link;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
     public String getCoverLetterLocation() {
@@ -43,13 +45,13 @@ public class UserDocuments {
         return resumeLocation;
     }
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public String getLink() {
         return link;

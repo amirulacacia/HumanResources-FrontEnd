@@ -16,34 +16,34 @@ public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "certificate_id")
-    private Long skillId;
+    private Long certificateId;
 
     @NotBlank
     @Column(name = "certificate_location")
     private String certificateLocation;
 
     @ManyToOne
-    @JoinColumn(name = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public String getCertificateLocation() {
         return certificateLocation;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
-    public Long getSkillId() {
-        return skillId;
+    public Long getCertificateId() {
+        return certificateId;
     }
 
     public void setApplicant(Applicant applicant) {
@@ -58,8 +58,7 @@ public class Certificate {
         this.employee = employee;
     }
 
-    public void setSkillId(Long skillId) {
-        this.skillId = skillId;
+    public void setCertificateId(Long certificateId) {
+        this.certificateId = certificateId;
     }
-    
 }
