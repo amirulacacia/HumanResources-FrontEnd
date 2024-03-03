@@ -23,11 +23,11 @@ public class Certificate {
     private String certificateLocation;
 
     @ManyToOne
-    @JoinColumn(name = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
     public Applicant getApplicant() {

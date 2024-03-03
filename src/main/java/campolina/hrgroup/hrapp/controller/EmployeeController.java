@@ -29,15 +29,15 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    @PutMapping("/{employeeId}")
-    public Employee updateEmployee(@RequestBody Employee employee,
-                                   @PathVariable long employeeId) {
-        return employeeService.updateEmployee(employee);
-    }
+    // @PutMapping("/{employeeId}")
+    // public Employee updateEmployee(@RequestBody Employee employee,
+    //                                @PathVariable long employeeId) {
+    //     return employeeService.updateEmployee(employee);
+    // }
 
-    @DeleteMapping("/{employeeId}")
-    public String deleteEmployee(@PathVariable long employeeId) {
-        return employeeService.deleteEmployee(employeeId);
-    }
+    // @DeleteMapping("/{employeeId}")
+    // public String deleteEmployee(@PathVariable long employeeId) {
+    //     return employeeService.deleteEmployee(employeeId);
+    // }
 }
 

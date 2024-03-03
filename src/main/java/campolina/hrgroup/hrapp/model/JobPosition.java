@@ -34,11 +34,10 @@ public class JobPosition {
     private String requirement;
 
     @ManyToOne
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "fk_department_id")
     private Department department;
     
-    @OneToOne
-    @JoinColumn(name = "position_id", referencedColumnName = "position_id")
+    @OneToOne(mappedBy = "jobPosition")
     private JobPosting jobPosting;
 
     @OneToMany(mappedBy = "jobPosition")

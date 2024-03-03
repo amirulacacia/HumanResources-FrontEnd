@@ -27,11 +27,11 @@ public class JobPosting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "jobPost_id")
+    @Column(name = "job_post_id")
     private Long jobPostingId;
 
     @OneToOne
-    @JoinColumn(name = "position_id")
+    @JoinColumn(name = "fk_position_id")
     private JobPosition jobPosition;
 
     @NotBlank
@@ -40,7 +40,7 @@ public class JobPosting {
     @NotNull
     private Integer vacancy;
 
-    @Column(name = "closed_date")
+    @Column(name = "close_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date closedDate;
 
@@ -57,7 +57,7 @@ public class JobPosting {
     private String status;
 
     @OneToMany
-    @JoinColumn(name = "jobPost_id", referencedColumnName = "jobPost_id")
+    @JoinColumn(name = "fk_job_post_id", referencedColumnName = "job_post_id")
     private List<Applicant> applicants;
 
     public List<Applicant> getApplicants() {

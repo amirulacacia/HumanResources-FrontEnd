@@ -1,5 +1,6 @@
 package campolina.hrgroup.hrapp.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,12 +45,12 @@ public class Address {
     @Column(name = "city")
     private String city;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
     public Long getAddressId() {

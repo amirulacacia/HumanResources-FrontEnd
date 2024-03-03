@@ -33,7 +33,7 @@ public class Reference {
     private String contactNumber;
 
     @ManyToOne
-    @JoinColumn(name = "additionalInfo_id")
+    @JoinColumn(name = "fk_additionalInfo_id")
     private AdditionalInfo additionalInfo;
 
     public AdditionalInfo getAdditionalInfo() {
@@ -74,5 +74,13 @@ public class Reference {
 
     public void setReferenceId(Long referenceId) {
         this.referenceId = referenceId;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

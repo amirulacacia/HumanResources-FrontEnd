@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -23,7 +22,7 @@ import jakarta.validation.constraints.NotBlank;
 public class ApplicantStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "applicantStatus_id")
+    @Column(name = "applicant_status_id")
     private Long applicantStatusId;
 
     @Column(nullable = false, updatable = false, name = "application_date")
@@ -35,9 +34,8 @@ public class ApplicantStatus {
     @NotBlank
     private String status;
 
-    @OneToOne
-    @JoinColumn(name = "applicantStatus_id", referencedColumnName = "applicantStatus_id")
-    private ApplicantStatus applicantStatus;
+    @OneToOne(mappedBy = "applicantStatus")
+    private Applicant applicant;
 
     public Long getApplicantStatusId() {
         return applicantStatusId;
@@ -61,5 +59,13 @@ public class ApplicantStatus {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Applicant getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
     }
 }

@@ -38,7 +38,7 @@ public class Interview {
     private String platform;
 
     @OneToOne
-    @JoinColumn(name = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
     @ManyToMany(mappedBy = "assignInterview")
