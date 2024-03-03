@@ -1,6 +1,8 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -31,52 +34,46 @@ public class Applicant {
     @NotBlank
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "jobPost_id")
-    private JobPosting jobPosting;
+    @ManyToMany
+    @JoinTable(
+        name = "applicant_status",
+        joinColumns = @JoinColumn(name = "fk_applicant_id"),
+        inverseJoinColumns = @JoinColumn(name = "fk_job_post_id")
+    )
+    private Set<JobPosting> jobStatus = new HashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "applicantStatus_id")
-    private ApplicantStatus applicantStatus;
-
-    @OneToOne
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @OneToOne(mappedBy = "applicant")
     private UserInfo userInfo;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @OneToOne(mappedBy = "applicant")
     private UserDiversity userDiversity;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @OneToOne(mappedBy = "applicant")
     private UserDocuments userDocuments;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @OneToOne(mappedBy = "applicant")
     private AdditionalInfo additionalInfo;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @OneToOne(mappedBy = "applicant")
     private Address address;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @OneToOne(mappedBy = "applicant")
     private Interview interview;
 
     @OneToMany
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id", referencedColumnName = "applicant_id")
     private List<Skill> skills;
 
     @OneToMany
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id", referencedColumnName = "applicant_id")
     private List<Certificate> certificates;
 
     @OneToMany
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id", referencedColumnName = "applicant_id")
     private List<Education> educations;
 
     @OneToMany
-    @JoinColumn(name = "applicant_id", referencedColumnName = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id", referencedColumnName = "applicant_id")
     private List<Experience> experiences;
 
     public long getApplicantId() {
@@ -103,20 +100,91 @@ public class Applicant {
         this.password = password;
     }
 
-    public JobPosting getJobPosting() {
-        return jobPosting;
+    public Set<JobPosting> getJobStatus() {
+        return jobStatus;
     }
 
-    public void setJobPosting(JobPosting jobPosting) {
-        this.jobPosting = jobPosting;
+    public void setJobStatus(Set<JobPosting> jobStatus) {
+        this.jobStatus = jobStatus;
     }
 
-    public ApplicantStatus getApplicantStatus() {
-        return applicantStatus;
+    public AdditionalInfo getAdditionalInfo() {
+        return additionalInfo;
     }
 
-    public void setApplicantStatus(ApplicantStatus applicantStatus) {
-        this.applicantStatus = applicantStatus;
+    public void setAdditionalInfo(AdditionalInfo additionalInfo) {
+        this.additionalInfo = additionalInfo;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
+    }
+
+    public List<Education> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(List<Education> educations) {
+        this.educations = educations;
+    }
+
+    public List<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(List<Experience> experiences) {
+        this.experiences = experiences;
+    }
+
+    public Interview getInterview() {
+        return interview;
+    }
+
+    public void setInterview(Interview interview) {
+        this.interview = interview;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public UserDiversity getUserDiversity() {
+        return userDiversity;
+    }
+
+    public void setUserDiversity(UserDiversity userDiversity) {
+        this.userDiversity = userDiversity;
+    }
+
+    public UserDocuments getUserDocuments() {
+        return userDocuments;
+    }
+
+    public void setUserDocuments(UserDocuments userDocuments) {
+        this.userDocuments = userDocuments;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 }

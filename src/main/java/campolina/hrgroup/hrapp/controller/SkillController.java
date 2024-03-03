@@ -13,9 +13,10 @@ public class SkillController {
     @Autowired
     private SkillService skillService;
 
-    @PostMapping
-    public Skill createSkill(@RequestBody Skill skill) {
-        return skillService.createSkill(skill);
+    @PostMapping("{user}/{userId}")
+    public Skill createSkill(@RequestBody Skill skill, @PathVariable("user") String user,
+            @PathVariable("userId") Long userId) {
+        return skillService.createSkill(skill, user, userId);
     }
 
     @GetMapping("/{skillId}")
@@ -30,8 +31,8 @@ public class SkillController {
 
     @PutMapping("/{skillId}")
     public Skill updateSkill(@RequestBody Skill skill,
-                             @PathVariable Long skillId) {
-        return skillService.updateSkill(skill);
+            @PathVariable Long skillId) {
+        return skillService.updateSkill(skill, skillId);
     }
 
     @DeleteMapping("/{skillId}")
@@ -39,4 +40,3 @@ public class SkillController {
         return skillService.deleteSkill(skillId);
     }
 }
-

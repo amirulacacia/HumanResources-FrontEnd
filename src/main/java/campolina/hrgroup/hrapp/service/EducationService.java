@@ -7,13 +7,13 @@ import campolina.hrgroup.hrapp.model.Education;
 @Service
 public interface EducationService {
 
-    Education createEducation(Education education);
+    Education createEducation(Education education, String user, Long userId);
 
-    Education getEducationById(Long educationId);
+    Education getEducationById(Long id);
 
     List<Education> getAllEducations();
 
-    Education updateEducation(Education education);
+    Education updateEducation(Education education, Long id);
 
-    String deleteEducation(Long educationId);
+    String deleteEducation(Long id);
 }

@@ -7,15 +7,16 @@ import campolina.hrgroup.hrapp.model.Address;
 import campolina.hrgroup.hrapp.service.AddressService;
 
 @RestController
-@RequestMapping("/address") 
+@RequestMapping("/address")
 public class AddressController {
 
     @Autowired
     private AddressService addressService;
 
-    @PostMapping
-    public Address createAddress(@RequestBody Address address) {
-        return addressService.createAddress(address);
+    @PostMapping("{user}/{userId}")
+    public Address createAddress(@RequestBody Address address,
+            @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return addressService.createAddress(address, user, userId);
     }
 
     @GetMapping("/{addressId}")
@@ -30,8 +31,7 @@ public class AddressController {
 
     @PutMapping("/{addressId}")
     public Address updateAddress(@PathVariable Long addressId, @RequestBody Address address) {
-        address.setAddressId(addressId);
-        return addressService.updateAddress(address);
+        return addressService.updateAddress(address, addressId);
     }
 
     @DeleteMapping("/{addressId}")
@@ -39,4 +39,3 @@ public class AddressController {
         return addressService.deleteAddress(addressId);
     }
 }
-

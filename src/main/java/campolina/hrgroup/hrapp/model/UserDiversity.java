@@ -1,7 +1,6 @@
 package campolina.hrgroup.hrapp.model;
 
-import java.util.Date;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +18,7 @@ import jakarta.validation.constraints.NotBlank;
 public class UserDiversity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userDiversity_id")
+    @Column(name = "user_diversity_id")
     private Long userDiversityId;
 
     @NotBlank
@@ -27,38 +26,38 @@ public class UserDiversity {
 
     @Column(nullable = false, name = "birth_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date birthDate;
+    private String birthDate;
 
     @NotBlank
     @Column(name = "marital_status")
     private String maritalStatus;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
     
     public void setEmployee(Employee employee) {
         this.employee = employee;

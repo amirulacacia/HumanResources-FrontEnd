@@ -7,14 +7,13 @@ import campolina.hrgroup.hrapp.model.Address;
 @Service
 public interface AddressService {
     
-    Address createAddress(Address address);
+    Address createAddress(Address address, String user, Long userId);
 
-    Address getAddressById(Long addressId);
+    Address getAddressById(Long id);
 
     List<Address> getAllAddresses();
 
-    Address updateAddress(Address address);
+    Address updateAddress(Address address, Long id);
 
-    String deleteAddress(Long addressId);
-
+    String deleteAddress(Long id);
 }

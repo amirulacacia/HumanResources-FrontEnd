@@ -7,15 +7,15 @@ import campolina.hrgroup.hrapp.model.AdditionalInfo;
 @Service
 public interface AdditionalInfoService {
     
-    AdditionalInfo createAdditionalInfo(AdditionalInfo additionalInfo);
+    AdditionalInfo createAdditionalInfo(AdditionalInfo additionalInfo, String user, Long userId);
 
-    AdditionalInfo getAdditionalInfoById(Long additionalInfoId);
+    AdditionalInfo getAdditionalInfoById(Long id);
 
     List<AdditionalInfo> getAllAdditionalInfo();
 
-    AdditionalInfo updateAdditionalInfo(AdditionalInfo additionalInfo);
+    AdditionalInfo updateAdditionalInfo(AdditionalInfo additionalInfo, Long id);
 
-    String deleteAdditionalInfo(Long additionalInfoId);
+    String deleteAdditionalInfo(Long id);
 
 }
 

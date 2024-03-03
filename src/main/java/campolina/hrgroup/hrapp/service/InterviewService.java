@@ -7,13 +7,13 @@ import campolina.hrgroup.hrapp.model.Interview;
 @Service
 public interface InterviewService {
 
-    Interview createInterview(Interview interview);
+    Interview createInterview(Interview interview, Long applicantId);
 
-    Interview getInterviewById(Long interviewId);
+    Interview getInterviewById(Long id);
 
     List<Interview> getAllInterviews();
 
-    Interview updateInterview(Interview interview);
+    Interview updateInterview(Interview interview, Long id);
 
-    String deleteInterview(Long interviewId);
+    String deleteInterview(Long id);
 }

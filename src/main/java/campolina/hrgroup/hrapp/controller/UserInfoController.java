@@ -1,7 +1,10 @@
 package campolina.hrgroup.hrapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import campolina.hrgroup.hrapp.model.UserInfo;
 import campolina.hrgroup.hrapp.service.UserInfoService;
 
@@ -12,19 +15,30 @@ public class UserInfoController {
     @Autowired
     private UserInfoService userInfoService;
 
-    @PostMapping
-    public UserInfo saveUserInfo(@RequestBody UserInfo userInfo) {
-        return userInfoService.saveUserInfo(userInfo);
+    @PostMapping("{user}/{userId}")
+    public UserInfo saveUserInfo(@RequestBody UserInfo userInfo, @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return userInfoService.saveUserInfo(userInfo, user, userId);
     }
 
-    @GetMapping("/{id}")
-    public UserInfo getUserInfoById(@PathVariable Long id) {
-        return userInfoService.getUserInfoById(id);
+    @GetMapping("/{userInfoId}")
+    public UserInfo getUserInfoById(@PathVariable Long userInfoId) {
+        return userInfoService.getUserInfoById(userInfoId);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteUserInfo(@PathVariable Long id) {
-        return userInfoService.deleteUserInfo(id);
+    @GetMapping
+    public List<UserInfo> getAllUserInfo() {
+        return userInfoService.getAllUserInfos();
+    }
+
+    @PutMapping("/{userInfoId}")
+    public UserInfo updateAdditionalInfo(@RequestBody UserInfo userInfo,
+            @PathVariable Long userInfoId) {
+        return userInfoService.updateUserInfo(userInfo, userInfoId);
+    }
+
+    @DeleteMapping("/{userInfoId}")
+    public String deleteUserInfo(@PathVariable Long userInfoId) {
+        return userInfoService.deleteUserInfo(userInfoId);
     }
 }
 

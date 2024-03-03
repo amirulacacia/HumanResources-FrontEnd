@@ -42,26 +42,26 @@ public class Experience {
     private String employerAddress;
 
     @Column(name = "salary")
-    private String salary;
+    private Double salary;
 
     @Column(name = "job_description")
     private String jobDescription;
 
     @ManyToOne
-    @JoinColumn(name = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public String getEmployerAddress() {
         return employerAddress;
@@ -87,7 +87,7 @@ public class Experience {
         return jobTitle;
     }
 
-    public String getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
@@ -127,7 +127,7 @@ public class Experience {
         this.jobTitle = jobTitle;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 

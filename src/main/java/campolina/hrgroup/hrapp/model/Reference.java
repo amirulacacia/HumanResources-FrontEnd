@@ -1,14 +1,18 @@
 package campolina.hrgroup.hrapp.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+@Entity
+@Table(name = "reference")
 public class Reference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,12 +33,12 @@ public class Reference {
     private String contactNumber;
 
     @ManyToOne
-    @JoinColumn(name = "additionalInfo_id")
+    @JoinColumn(name = "fk_additional_info_id")
     private AdditionalInfo additionalInfo;
 
-    public AdditionalInfo getAdditionalInfo() {
-        return additionalInfo;
-    }
+    // public AdditionalInfo getAdditionalInfo() {
+    //     return additionalInfo;
+    // }
     
     public void setAdditionalInfo(AdditionalInfo additionalInfo) {
         this.additionalInfo = additionalInfo;
@@ -70,5 +74,13 @@ public class Reference {
 
     public void setReferenceId(Long referenceId) {
         this.referenceId = referenceId;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

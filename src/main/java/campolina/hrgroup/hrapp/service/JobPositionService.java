@@ -7,13 +7,13 @@ import campolina.hrgroup.hrapp.model.JobPosition;
 @Service
 public interface JobPositionService {
 
-    JobPosition createJobPosition(JobPosition jobPosition);
+    JobPosition createJobPosition(JobPosition jobPosition, Long departmentId);
 
-    JobPosition getJobPositionById(Long positionId);
+    JobPosition getJobPositionById(Long id);
 
     List<JobPosition> getAllJobPositions();
 
-    JobPosition updateJobPosition(JobPosition jobPosition);
+    JobPosition updateJobPosition(JobPosition jobPosition, Long id);
 
-    String deleteJobPosition(Long positionId);
+    String deleteJobPosition(Long id);
 }

@@ -1,8 +1,8 @@
 package campolina.hrgroup.hrapp.model;
 
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +28,7 @@ public class Interview {
 
     @Column(nullable = false, name = "appointment_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date appointmentDate;
+    private String appointmentDate;
 
     @Column(nullable = false, name = "appointment_time")
     private LocalTime appointmentTime;
@@ -37,26 +37,25 @@ public class Interview {
     private String platform;
 
     @OneToOne
-    @JoinColumn(name = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
-    @ManyToMany
-    @JoinColumn(name = "interview_id", referencedColumnName = "interview_id")
-    private List<Employee> employees;
+    @ManyToMany(mappedBy = "assignInterview")
+    private Set<Employee> assignEmployees = new HashSet<>();
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
     }
 
-    public Date getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
     
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -84,11 +83,11 @@ public class Interview {
         this.platform = platform;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
+    // public Set<Employee> getAssignEmployees() {
+    //     return assignEmployees;
+    // }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setAssignEmployees(Set<Employee> assignEmployees) {
+        this.assignEmployees = assignEmployees;
     }
 }

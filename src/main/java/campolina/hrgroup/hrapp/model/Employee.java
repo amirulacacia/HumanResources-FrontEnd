@@ -1,13 +1,17 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -21,60 +25,63 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
-    private long employeeId;
+    private Long employeeId;
 
     @NotBlank
     private String password;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToOne(mappedBy = "employee")
     private UserInfo userInfo;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToOne(mappedBy = "employee")
     private UserDiversity userDiversity;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToOne(mappedBy = "employee")
     private UserDocuments userDocuments;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToOne(mappedBy = "employee")
     private AdditionalInfo additionalInfo;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToOne(mappedBy = "employee")
     private Address address;
 
-    @OneToMany
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id", referencedColumnName = "employee_id")
     private List<Skill> skills;
 
-    @OneToMany
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id", referencedColumnName = "employee_id")
     private List<Certificate> certificates;
 
-    @OneToMany
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id", referencedColumnName = "employee_id")
     private List<Education> educations;
 
-    @OneToMany
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id", referencedColumnName = "employee_id")
     private List<Experience> experiences;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "employee_position",
+        joinColumns = @JoinColumn(name = "fk_employee_id"),
+        inverseJoinColumns = @JoinColumn(name = "fk_position_id")
+    )
     private JobPosition jobPosition;
 
     @ManyToMany
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
-    private List<Interview> interviews;
+    @JoinTable(
+        name = "employee_interview",
+        joinColumns = @JoinColumn(name = "fk_employee_id"),
+        inverseJoinColumns = @JoinColumn(name = "fk_interview_id")
+    )
+    private Set<Interview> assignInterview = new HashSet<>();
 
-    public long getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -84,5 +91,93 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public AdditionalInfo getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(AdditionalInfo additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Set<Interview> getAssignInterview() {
+        return assignInterview;
+    }
+
+    public void setAssignInterview(Set<Interview> assignInterview) {
+        this.assignInterview = assignInterview;
+    }
+
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
+    }
+
+    public List<Education> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(List<Education> educations) {
+        this.educations = educations;
+    }
+
+    public List<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(List<Experience> experiences) {
+        this.experiences = experiences;
+    }
+
+    public JobPosition getJobPosition() {
+        return jobPosition;
+    }
+
+    public void setJobPosition(JobPosition jobPosition) {
+        this.jobPosition = jobPosition;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public UserDiversity getUserDiversity() {
+        return userDiversity;
+    }
+
+    public void setUserDiversity(UserDiversity userDiversity) {
+        this.userDiversity = userDiversity;
+    }
+
+    public UserDocuments getUserDocuments() {
+        return userDocuments;
+    }
+
+    public void setUserDocuments(UserDocuments userDocuments) {
+        this.userDocuments = userDocuments;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 }

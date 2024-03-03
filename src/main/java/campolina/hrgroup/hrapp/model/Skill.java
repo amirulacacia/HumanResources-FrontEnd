@@ -23,20 +23,20 @@ public class Skill {
     private String skill;
 
     @ManyToOne
-    @JoinColumn(name = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public String getSkill() {
         return skill;
