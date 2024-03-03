@@ -36,9 +36,9 @@ public class Reference {
     @JoinColumn(name = "fk_additional_info_id")
     private AdditionalInfo additionalInfo;
 
-    public AdditionalInfo getAdditionalInfo() {
-        return additionalInfo;
-    }
+    // public AdditionalInfo getAdditionalInfo() {
+    //     return additionalInfo;
+    // }
     
     public void setAdditionalInfo(AdditionalInfo additionalInfo) {
         this.additionalInfo = additionalInfo;
