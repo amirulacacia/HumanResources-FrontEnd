@@ -1,7 +1,8 @@
 package campolina.hrgroup.hrapp.model;
 
 import java.time.LocalTime;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -26,7 +28,7 @@ public class Interview {
 
     @Column(nullable = false, name = "appointment_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date appointmentDate;
+    private String appointmentDate;
 
     @Column(nullable = false, name = "appointment_time")
     private LocalTime appointmentTime;
@@ -35,22 +37,25 @@ public class Interview {
     private String platform;
 
     @OneToOne
-    @JoinColumn(name = "applicant_id")
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    @ManyToMany(mappedBy = "assignInterview")
+    private Set<Employee> assignEmployees = new HashSet<>();
+
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
     }
 
-    public Date getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
     
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -76,5 +81,13 @@ public class Interview {
 
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    // public Set<Employee> getAssignEmployees() {
+    //     return assignEmployees;
+    // }
+
+    public void setAssignEmployees(Set<Employee> assignEmployees) {
+        this.assignEmployees = assignEmployees;
     }
 }

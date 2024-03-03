@@ -13,11 +13,6 @@ public class ApplicantStatusController {
     @Autowired
     private ApplicantStatusService applicantStatusService;
 
-    @PostMapping
-    public ApplicantStatus createApplicantStatus(@RequestBody ApplicantStatus applicantStatus) {
-        return applicantStatusService.createApplicantStatus(applicantStatus);
-    }
-
     @GetMapping("/{applicantStatusId}")
     public ApplicantStatus getApplicantStatusById(@PathVariable Long applicantStatusId) {
         return applicantStatusService.getApplicantStatusById(applicantStatusId);
@@ -31,12 +26,7 @@ public class ApplicantStatusController {
     @PutMapping("/{applicantStatusId}")
     public ApplicantStatus updateApplicantStatus(@RequestBody ApplicantStatus applicantStatus,
                                                  @PathVariable Long applicantStatusId) {
-        return applicantStatusService.updateApplicantStatus(applicantStatus);
-    }
-
-    @DeleteMapping("/{applicantStatusId}")
-    public String deleteApplicantStatus(@PathVariable Long applicantStatusId) {
-        return applicantStatusService.deleteApplicantStatus(applicantStatusId);
+        return applicantStatusService.updateApplicantStatus(applicantStatus, applicantStatusId);
     }
 }
 

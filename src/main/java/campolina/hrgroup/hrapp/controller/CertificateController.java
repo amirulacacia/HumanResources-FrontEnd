@@ -13,9 +13,10 @@ public class CertificateController {
     @Autowired
     private CertificateService certificateService;
 
-    @PostMapping
-    public Certificate createCertificate(@RequestBody Certificate certificate) {
-        return certificateService.createCertificate(certificate);
+    @PostMapping("{user}/{userId}")
+    public Certificate createCertificate(@RequestBody Certificate certificate,
+            @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return certificateService.createCertificate(certificate, user, userId);
     }
 
     @GetMapping("/{certificateId}")
@@ -30,8 +31,8 @@ public class CertificateController {
 
     @PutMapping("/{certificateId}")
     public Certificate updateCertificate(@RequestBody Certificate certificate,
-                                         @PathVariable Long certificateId) {
-        return certificateService.updateCertificate(certificate);
+            @PathVariable Long certificateId) {
+        return certificateService.updateCertificate(certificate, certificateId);
     }
 
     @DeleteMapping("/{certificateId}")
@@ -39,4 +40,3 @@ public class CertificateController {
         return certificateService.deleteCertificate(certificateId);
     }
 }
-

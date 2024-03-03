@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -14,8 +14,8 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,11 +27,11 @@ public class JobPosting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "jobPost_id")
+    @Column(name = "job_post_id")
     private Long jobPostingId;
 
     @OneToOne
-    @JoinColumn(name = "position_id")
+    @JoinColumn(name = "fk_position_id")
     private JobPosition jobPosition;
 
     @NotBlank
@@ -40,15 +40,15 @@ public class JobPosting {
     @NotNull
     private Integer vacancy;
 
-    @Column(nullable = false, name = "closed_date")
+    @Column(name = "close_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date closedDate;
+    private String closedDate;
 
     @Column(nullable = false, updatable = false, name = "upload_date")
     @JsonFormat(pattern = "dd/MM/yyyy")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date uploadDate;
+    private String uploadDate;
 
     @Column(name = "salary_offer")
     private Double salaryOffer;
@@ -56,29 +56,28 @@ public class JobPosting {
     @NotBlank
     private String status;
 
-    @OneToMany
-    @JoinColumn(name = "jobPost_id", referencedColumnName = "jobPost_id")
-    private List<Applicant> applicants;
+    @ManyToMany(mappedBy = "jobStatus")
+    private Set<Applicant> applicantStatus =  new HashSet<>();
 
-    public List<Applicant> getApplicants() {
-        return applicants;
+    public Set<Applicant> getApplicantStatus() {
+        return applicantStatus;
     }
 
-    public void setApplicants(List<Applicant> applicants) {
-        this.applicants = applicants;
+    public void setApplicantStatus(Set<Applicant> applicantStatus) {
+        this.applicantStatus = applicantStatus;
     }
 
-    public Date getClosedDate() {
+    public String getClosedDate() {
         return closedDate;
     }
 
-    public void setClosedDate(Date closedDate) {
+    public void setClosedDate(String closedDate) {
         this.closedDate = closedDate;
     }
 
-    public JobPosition getJobPosition() {
-        return jobPosition;
-    }
+    // public JobPosition getJobPosition() {
+    //     return jobPosition;
+    // }
 
     public void setJobPosition(JobPosition jobPosition) {
         this.jobPosition = jobPosition;
@@ -116,11 +115,11 @@ public class JobPosting {
         this.status = status;
     }
 
-    public Date getUploadDate() {
+    public String getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(Date uploadDate) {
+    public void setUploadDate(String uploadDate) {
         this.uploadDate = uploadDate;
     }
 

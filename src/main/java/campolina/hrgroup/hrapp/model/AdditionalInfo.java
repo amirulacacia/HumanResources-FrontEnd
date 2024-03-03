@@ -1,21 +1,24 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "additional_info")
 public class AdditionalInfo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "additionalInfo_id")
+    @Column(name = "additional_info_id")
     private Long additionInfoId;
 
     @Column(name = "relocation")
@@ -27,13 +30,17 @@ public class AdditionalInfo {
     @Column(name = "notice_period")
     private Integer noticePeriod;
 
-    @OneToOne
-    @JoinColumn(name = "applicant_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_applicant_id")
     private Applicant applicant;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_employee_id")
     private Employee employee;
+
+    @OneToMany
+    @JoinColumn(name = "fk_additional_info_id", referencedColumnName = "additional_info_id")
+    private List<Reference> references;
 
     public Long getAdditionInfoId() {
         return additionInfoId;
@@ -59,17 +66,17 @@ public class AdditionalInfo {
         this.noticePeriod = noticePeriod;
     }
 
-    public Applicant getApplicant() {
-        return applicant;
-    }
+    // public Applicant getApplicant() {
+    //     return applicant;
+    // }
 
     public void setApplicant(Applicant applicant) {
         this.applicant = applicant;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    // public Employee getEmployee() {
+    //     return employee;
+    // }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
@@ -81,5 +88,13 @@ public class AdditionalInfo {
 
     public void setRelocation(Boolean relocation) {
         this.relocation = relocation;
+    }
+
+    public List<Reference> getReferences() {
+        return references;
+    }
+
+    public void setReferences(List<Reference> references) {
+        this.references = references;
     }
 }

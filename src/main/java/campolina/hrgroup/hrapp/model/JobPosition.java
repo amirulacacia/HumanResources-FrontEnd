@@ -1,5 +1,7 @@
 package campolina.hrgroup.hrapp.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -31,16 +34,18 @@ public class JobPosition {
     private String requirement;
 
     @ManyToOne
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "fk_department_id")
     private Department department;
     
-    @OneToOne
-    @JoinColumn(name = "position_id", referencedColumnName = "position_id")
+    @OneToOne(mappedBy = "jobPosition")
     private JobPosting jobPosting;
 
-    public Department getDepartment() {
-        return department;
-    }
+    @OneToMany(mappedBy = "jobPosition")
+    private List<Employee> employees;
+
+    // public Department getDepartment() {
+    //     return department;
+    // }
 
     public void setDepartment(Department department) {
         this.department = department;
@@ -84,5 +89,13 @@ public class JobPosition {
 
     public void setRequirement(String requirement) {
         this.requirement = requirement;
+    }
+
+    // public List<Employee> getEmployees() {
+    //     return employees;
+    // }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

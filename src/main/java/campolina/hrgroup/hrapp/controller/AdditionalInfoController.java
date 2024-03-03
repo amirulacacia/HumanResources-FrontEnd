@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import campolina.hrgroup.hrapp.model.AdditionalInfo;
 import campolina.hrgroup.hrapp.service.AdditionalInfoService;
+
 import java.util.List;
 
 @RestController
@@ -13,9 +14,10 @@ public class AdditionalInfoController {
     @Autowired
     private AdditionalInfoService additionalInfoService;
 
-    @PostMapping
-    public AdditionalInfo createAdditionalInfo(@RequestBody AdditionalInfo additionalInfo) {
-        return additionalInfoService.createAdditionalInfo(additionalInfo);
+    @PostMapping("{user}/{userId}")
+    public AdditionalInfo createAdditionalInfo(@RequestBody AdditionalInfo additionalInfo,
+            @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return additionalInfoService.createAdditionalInfo(additionalInfo, user, userId);
     }
 
     @GetMapping("/{additionalInfoId}")
@@ -29,9 +31,9 @@ public class AdditionalInfoController {
     }
 
     @PutMapping("/{additionalInfoId}")
-    public AdditionalInfo updateAdditionalInfo(@RequestBody AdditionalInfo additionalInfo, @PathVariable Long additionalInfoId) {
-        additionalInfo.setAdditionInfoId(additionalInfoId);
-        return additionalInfoService.updateAdditionalInfo(additionalInfo);
+    public AdditionalInfo updateAdditionalInfo(@RequestBody AdditionalInfo additionalInfo,
+            @PathVariable Long additionalInfoId) {
+        return additionalInfoService.updateAdditionalInfo(additionalInfo, additionalInfoId);
     }
 
     @DeleteMapping("/{additionalInfoId}")
@@ -39,4 +41,3 @@ public class AdditionalInfoController {
         return additionalInfoService.deleteAdditionalInfo(additionalInfoId);
     }
 }
-

@@ -7,13 +7,13 @@ import campolina.hrgroup.hrapp.model.Certificate;
 @Service
 public interface CertificateService {
     
-    Certificate createCertificate(Certificate certificate);
+    Certificate createCertificate(Certificate certificate, String user, Long userId);
 
-    Certificate getCertificateById(Long certificateId);
+    Certificate getCertificateById(Long id);
 
     List<Certificate> getAllCertificates();
 
-    Certificate updateCertificate(Certificate certificate);
+    Certificate updateCertificate(Certificate certificate, Long id);
 
-    String deleteCertificate(Long certificateId);
+    String deleteCertificate(Long id);
 }

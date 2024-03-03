@@ -25,7 +25,7 @@ public class Department {
     private String name;
 
     @OneToMany
-    @JoinColumn(name = "department_id", referencedColumnName = "department_id")
+    @JoinColumn(name = "fk_department_id", referencedColumnName = "department_id")
     private List<JobPosition> jobPositions;
 
     public Long getDepartmentId() {

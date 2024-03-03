@@ -13,9 +13,10 @@ public class EducationController {
     @Autowired
     private EducationService educationService;
 
-    @PostMapping
-    public Education createEducation(@RequestBody Education education) {
-        return educationService.createEducation(education);
+    @PostMapping("{user}/{userId}")
+    public Education createEducation(@RequestBody Education education,
+            @PathVariable("user") String user, @PathVariable("userId") Long userId) {
+        return educationService.createEducation(education, user, userId);
     }
 
     @GetMapping("/{educationId}")
@@ -30,8 +31,8 @@ public class EducationController {
 
     @PutMapping("/{educationId}")
     public Education updateEducation(@RequestBody Education education,
-                                     @PathVariable Long educationId) {
-        return educationService.updateEducation(education);
+            @PathVariable Long educationId) {
+        return educationService.updateEducation(education, educationId);
     }
 
     @DeleteMapping("/{educationId}")

@@ -7,13 +7,13 @@ import campolina.hrgroup.hrapp.model.Experience;
 @Service
 public interface ExperienceService {
 
-    Experience createExperience(Experience experience);
+    Experience createExperience(Experience experience, String user, Long userId);
 
-    Experience getExperienceById(Long experienceId);
+    Experience getExperienceById(Long id);
 
     List<Experience> getAllExperiences();
 
-    Experience updateExperience(Experience experience);
+    Experience updateExperience(Experience experience, Long id);
 
-    String deleteExperience(Long experienceId);
+    String deleteExperience(Long id);
 }
