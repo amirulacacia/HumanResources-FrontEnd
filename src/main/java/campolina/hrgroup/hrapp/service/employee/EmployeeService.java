@@ -1,6 +1,8 @@
 package campolina.hrgroup.hrapp.service.employee;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import campolina.hrgroup.hrapp.model.employee.Employee;
@@ -25,4 +27,6 @@ public interface EmployeeService {
     Employee assignInterviewToEmployee(Long id, Long interviewId);
 
     Employee removeInterviewFromEmployee(Long id, Long interviewId);
+
+    Boolean isEmployeeHaveTruePassword(Map<String,String> map);
 }

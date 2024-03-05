@@ -1,6 +1,7 @@
 package campolina.hrgroup.hrapp.service.serviceImplementation.employee;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -108,5 +109,18 @@ public class EmployeeServiceImplementation implements EmployeeService {
         return employeeRepository.save(employee);
     }
 
-}
+    @Override
+    public Boolean isEmployeeHaveTruePassword(Map<String, String> map) {
+        try {
+            Employee employee = employeeRepository.findByEmail(map.get("email")).get();
+            if (employee.getPassword().equals(map.get("password")))
+                return true;
+            else
+                return false;
+        } catch (Exception e) {
+            e.getStackTrace();
+            return false;
+        }
+    }
 
+}

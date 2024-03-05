@@ -71,7 +71,6 @@ public class UserInfoServiceImplementation implements UserInfoService {
             userInfoDB.setTitle(userInfo.getTitle());
         }
 
-
         if (Objects.nonNull(userInfo.getMiddleName())) {
             userInfoDB.setMiddleName(userInfo.getMiddleName());
         }

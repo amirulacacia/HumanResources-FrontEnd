@@ -239,9 +239,10 @@ DROP TABLE IF EXISTS `employee`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee` (
   `employee_id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL,
   `password` varchar(150) NOT NULL,
   PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +251,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (9,'help');
+INSERT INTO `employee` VALUES (9,'','help'),(11,'amirulacacia@outlook.com','hello');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -574,7 +575,6 @@ CREATE TABLE `user_information` (
   `first_name` varchar(150) NOT NULL,
   `middle_name` varchar(150) DEFAULT NULL,
   `last_name` varchar(150) DEFAULT NULL,
-  `email` varchar(150) NOT NULL,
   `title` varchar(45) NOT NULL,
   `contact_number` varchar(150) NOT NULL,
   `fk_applicant_id` int DEFAULT NULL,
@@ -593,7 +593,7 @@ CREATE TABLE `user_information` (
 
 LOCK TABLES `user_information` WRITE;
 /*!40000 ALTER TABLE `user_information` DISABLE KEYS */;
-INSERT INTO `user_information` VALUES (2,'Amirul',NULL,NULL,'amirulacacia@gmail.com','Dr.','0121232454',NULL,NULL),(3,'Amirul',NULL,NULL,'amirulacacia@gmail.com','Ir. Ts.','0121232454',NULL,9);
+INSERT INTO `user_information` VALUES (2,'Amirul',NULL,NULL,'Dr.','0121232454',NULL,NULL),(3,'Amirul',NULL,NULL,'Ir. Ts.','0121232454',NULL,9);
 /*!40000 ALTER TABLE `user_information` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -606,4 +606,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-03 23:00:55
+-- Dump completed on 2024-03-05 18:57:49

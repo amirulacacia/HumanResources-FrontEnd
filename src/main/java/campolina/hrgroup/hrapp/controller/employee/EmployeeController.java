@@ -1,6 +1,7 @@
-package campolina.hrgroup.hrapp.controller.applicant;
+package campolina.hrgroup.hrapp.controller.employee;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import campolina.hrgroup.hrapp.model.employee.Employee;
 import campolina.hrgroup.hrapp.service.employee.EmployeeService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -62,5 +64,10 @@ public class EmployeeController {
     public Employee removeInterviewFromEmployee(@PathVariable("employeeId") Long employeeId,
             @PathVariable("interviewId") Long interviewId) {
         return employeeService.removeInterviewFromEmployee(employeeId, interviewId);
+    }
+
+    @PostMapping("/login")
+    public Boolean checkPasswordEmployee(@RequestBody Map<String,String> map){
+        return employeeService.isEmployeeHaveTruePassword(map);
     }
 }
