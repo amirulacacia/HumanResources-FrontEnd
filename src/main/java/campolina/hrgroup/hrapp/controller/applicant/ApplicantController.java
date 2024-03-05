@@ -1,12 +1,15 @@
 package campolina.hrgroup.hrapp.controller.applicant;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import campolina.hrgroup.hrapp.model.applicant.Applicant;
 import campolina.hrgroup.hrapp.service.applicant.ApplicantService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/applicant") 
 public class ApplicantController {
@@ -37,6 +40,16 @@ public class ApplicantController {
     @PostMapping
     public Applicant saveApplicant(@RequestBody Applicant applicant) {
         return applicantService.save(applicant);
+    }
+
+    @PostMapping("/login")
+    public Boolean checkPasswordApplicant(@RequestBody Map<String,String> map){
+        return applicantService.isApplicantHaveTruePassword(map);
+    }
+
+    @PostMapping("/register")
+    public Applicant registerApplicant(@RequestBody Map<String,String> map){
+        return applicantService.registerApplicant(map);
     }
 }
 

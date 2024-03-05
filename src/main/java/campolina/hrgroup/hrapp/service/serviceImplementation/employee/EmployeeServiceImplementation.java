@@ -123,4 +123,16 @@ public class EmployeeServiceImplementation implements EmployeeService {
         }
     }
 
+    @Override
+    public Employee registerEmployee(Map<String, String> map) {
+        Employee employee = new Employee();
+
+        if (!(map.get("email").equals(null) || map.get("password").equals(null))) {
+            employee.setEmail(map.get("email"));
+            employee.setPassword(map.get("password"));
+            return employeeRepository.save(employee);
+        }else
+            return null;
+    }
+
 }

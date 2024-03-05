@@ -70,4 +70,9 @@ public class EmployeeController {
     public Boolean checkPasswordEmployee(@RequestBody Map<String,String> map){
         return employeeService.isEmployeeHaveTruePassword(map);
     }
+
+    @PostMapping("/register")
+    public Employee registerEmployee(@RequestBody Map<String,String> map){
+        return employeeService.registerEmployee(map);
+    }
 }

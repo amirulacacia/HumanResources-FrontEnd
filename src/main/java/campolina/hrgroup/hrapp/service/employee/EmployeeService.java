@@ -29,4 +29,7 @@ public interface EmployeeService {
     Employee removeInterviewFromEmployee(Long id, Long interviewId);
 
     Boolean isEmployeeHaveTruePassword(Map<String,String> map);
+
+    Employee registerEmployee(Map<String, String> map);
+    
 }
