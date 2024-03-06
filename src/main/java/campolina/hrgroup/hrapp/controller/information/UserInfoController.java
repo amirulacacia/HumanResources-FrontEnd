@@ -40,5 +40,7 @@ public class UserInfoController {
     public String deleteUserInfo(@PathVariable Long userInfoId) {
         return userInfoService.deleteUserInfo(userInfoId);
     }
+
+    
 }
 

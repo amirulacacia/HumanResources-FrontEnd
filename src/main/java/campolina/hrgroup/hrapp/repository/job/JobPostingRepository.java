@@ -7,5 +7,7 @@ import campolina.hrgroup.hrapp.model.job.JobPosting;
 
 public interface JobPostingRepository extends CrudRepository<JobPosting, Long>  {
     List<JobPosting> findAll();
+
+    
 }
 
